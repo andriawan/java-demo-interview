@@ -1,0 +1,14 @@
+{
+    "recommendations": [
+        "vscjava.vscode-java-debug",
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-gradle",
+        "visualstudioexptteam.intellicode-api-usage-examples",
+        "redhat.java",
+        "vscjava.vscode-maven",
+        "vscjava.vscode-java-dependency",
+        "vscjava.vscode-java-test",
+        "mhutchie.git-graph",
+        "eamodio.gitlens"
+    ]
+}
