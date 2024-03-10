@@ -1,0 +1,5 @@
+spring:
+    application:
+        name: Interview Demo
+server:
+    port: 8080
