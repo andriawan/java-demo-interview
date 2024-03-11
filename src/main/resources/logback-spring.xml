@@ -15,7 +15,7 @@
     </appender>
     <appender name="error" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <pattern>--------------%n[Time]: %d%n[Level]: %level [Thread]: %thread%n[Package]: %logger%n[Message]: %msg%n</pattern>
             <charset>utf8</charset>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -29,7 +29,7 @@
         <file>${LOGS}/error.log</file>
         <encoder
             class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <Pattern>%d %p %C [%t] %m%n</Pattern>
+            <pattern>--------------%n[Time]: %d%n[Level]: %level [Thread]: %thread%n[Package]: %logger%n[Message]: %msg%n</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
@@ -47,12 +47,11 @@
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
     </appender>
-    <appender name="userLog"
+    <appender name="standart-file-log"
         class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOGS}/user.log</file>
-        <encoder
-            class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <Pattern>%d %p %C [%t] %m%n</Pattern>
+        <encoder>
+            <pattern>--------------%n[Time]: %d%n[Level]: %level [Thread]: %thread%n[Package]: %logger%n[Message]: %msg%n</pattern>
         </encoder>
 
         <rollingPolicy
@@ -72,6 +71,6 @@
         <appender-ref ref="error" />
     </root>
     <logger name="andriawan.interview.sample.demo.controller">
-        <appender-ref ref="userLog" />
+        <appender-ref ref="standart-file-log" />
     </logger>
 </configuration>
