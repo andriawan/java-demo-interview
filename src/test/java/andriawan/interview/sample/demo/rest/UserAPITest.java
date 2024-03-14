@@ -2,6 +2,7 @@ package andriawan.interview.sample.demo.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import andriawan.interview.sample.demo.component.FakerComponent;
 import andriawan.interview.sample.demo.dto.UserStoreRequest;
 import andriawan.interview.sample.demo.repository.UserRepository;
 import java.math.BigDecimal;
@@ -22,6 +23,8 @@ class UserAPITest {
 
   @Autowired private UserRepository userRepository;
 
+  @Autowired private FakerComponent faker;
+
   private String url;
 
   @BeforeEach
@@ -33,9 +36,9 @@ class UserAPITest {
   public UserStoreRequest createUser() {
     return UserStoreRequest.builder()
         .isActive(true)
-        .name("irwan")
-        .address("raparah")
-        .salary(new BigDecimal(1_000_000))
+        .name(faker.name().nameWithMiddle())
+        .address(faker.address().fullAddress())
+        .salary(new BigDecimal(faker.number().randomNumber(5, false)))
         .build();
   }
 
