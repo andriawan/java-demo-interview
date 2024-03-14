@@ -5,10 +5,28 @@ plugins {
 	id 'it.nicolasfarabegoli.conventional-commits' version '3.1.3'
 	id 'com.diffplug.spotless' version '6.25.0'
 	id 'io.freefair.lombok' version '8.6'
+	id 'me.qoomon.git-versioning' version '6.4.2'
+}
+
+gitVersioning.apply {
+    refs {
+		branch('main') {
+            version = '${describe.tag}-dev.${commit.short}'
+        }
+        branch('.+') {
+            version = '${describe.tag}-${commit}'
+        }
+        tag('v(?<version>.*)') {
+            version = '${describe.tag}-RELEASE'
+        }
+    }
+	
+    rev {
+        version = '${commit}'
+    }
 }
 
 group = 'andriawan.interview.sample'
-version = '0.0.1-SNAPSHOT'
 
 java {
 	sourceCompatibility = '17'
