@@ -11,6 +11,7 @@ public class UserStoreRequest {
   private String name;
   private Boolean isActive;
   private String address;
+  private Integer age;
   private BigDecimal salary;
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;

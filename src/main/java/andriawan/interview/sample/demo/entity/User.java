@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,6 +28,10 @@ public class User {
   String address;
 
   Boolean isActive;
+
+  Integer age;
+
+  BigDecimal salary;
 
   LocalDateTime createdAt;
 
