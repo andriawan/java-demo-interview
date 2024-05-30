@@ -27,3 +27,12 @@ services:
     build:
       context: ../../
       dockerfile: docker/app/Dockerfile
+  docker_builder:
+    image: docker:26-dind
+    privileged: true
+    working_dir: /app
+    entrypoint: "sh /app/docker/app/docker.sh"
+    env_file: .env
+    volumes:
+      - "../../:/app"
+      - "/var/run/docker.sock:/var/run/docker.sock"
