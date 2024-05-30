@@ -1,0 +1,29 @@
+services:
+  tester:
+    image: gradle:jdk21-alpine
+    entrypoint: gradle test spotlessCheck -i
+    working_dir: /app
+    environment:
+      - GRADLE_USER_HOME=/app/.gradle
+    volumes:
+      - "../../:/app"
+  linter:
+    image: gradle:jdk21-alpine
+    entrypoint: gradle spotlessApply -i
+    working_dir: /app
+    environment:
+      - GRADLE_USER_HOME=/app/.gradle
+    volumes:
+      - "../../:/app"
+  builder:
+    image: gradle:jdk21-alpine
+    entrypoint: gradle build -i
+    working_dir: /app
+    environment:
+      - GRADLE_USER_HOME=/app/.gradle
+    volumes:
+      - "../../:/app"
+  app_local:
+    build:
+      context: ../../
+      dockerfile: docker/app/Dockerfile
