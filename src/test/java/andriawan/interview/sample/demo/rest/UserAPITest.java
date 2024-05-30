@@ -6,6 +6,7 @@ import andriawan.interview.sample.demo.component.FakerComponent;
 import andriawan.interview.sample.demo.dto.UserStoreRequest;
 import andriawan.interview.sample.demo.repository.UserRepository;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,8 @@ class UserAPITest {
         .isActive(true)
         .name(faker.name().nameWithMiddle())
         .address(faker.address().fullAddress())
-        .salary(new BigDecimal(faker.number().randomNumber(5, false)))
+        .salary(
+            new BigDecimal(faker.number().randomNumber(5, false)).setScale(2, RoundingMode.HALF_UP))
         .build();
   }
 
