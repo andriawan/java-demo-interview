@@ -39,6 +39,8 @@ class UserAPITest {
         .isActive(true)
         .name(faker.name().nameWithMiddle())
         .address(faker.address().fullAddress())
+        .email(faker.bothify("user#?###??@yopmail.com"))
+        .password(faker.bothify("######???###"))
         .salary(
             new BigDecimal(faker.number().randomNumber(5, false)).setScale(2, RoundingMode.HALF_UP))
         .build();
@@ -46,8 +48,9 @@ class UserAPITest {
 
   @Test
   void listShouldContainSavedUser() throws Exception {
+    UserStoreRequest userRequest = createUser();
     String result =
-        this.restTemplate.postForObject(this.url.concat("/user"), createUser(), String.class);
+        this.restTemplate.postForObject(this.url.concat("/user"), userRequest, String.class);
     String list = this.restTemplate.getForObject(this.url.concat("/user"), String.class);
     assertThat(result).isSubstringOf(list);
   }

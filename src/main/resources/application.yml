@@ -13,6 +13,8 @@ spring:
                 - src/main/java/
 server:
     port: ${APP_PORT:8080}
+jwt:
+    secret: ${SECRET_KET:vDgAkz3OtUf8yjVfcl/mHfZGZHpXK3W8L5PmHvUTABYfFYVzSz5+qgWPMp2QH5I4x3UBPxytZ3gTP8RaFPvURqdh4rbclivrW7u52ZHKLvvOTNOAdx3ApSeb}
 springdoc:
     swagger-ui:
         path: ${SWAGGER_PATH:/swagger-ui.html}

@@ -10,6 +10,7 @@ import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +19,7 @@ public class UserService {
   public final Integer ADULT_TRESHOLD = 25;
 
   @Autowired UserRepository userRepository;
+  @Autowired PasswordEncoder passwordEncoder;
 
   public boolean isAdult(Integer age) {
     return age >= ADULT_TRESHOLD;
@@ -30,6 +32,7 @@ public class UserService {
   public UserDto saveData(@NonNull UserStoreRequest user) {
     User data = UserMapper.INSTANCE.toUser(user);
     data.setCreatedAt(LocalDateTime.now());
+    data.setPassword(passwordEncoder.encode(user.getPassword()));
     return UserMapper.INSTANCE.toUserDto(this.userRepository.save(data));
   }
 }

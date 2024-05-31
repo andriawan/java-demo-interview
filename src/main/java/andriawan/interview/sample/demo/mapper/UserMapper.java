@@ -14,6 +14,7 @@ public interface UserMapper {
   UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
   @Mapping(target = "id", ignore = true)
+  @Mapping(target = "password", ignore = true)
   User toUser(UserStoreRequest request);
 
   UserDto toUserDto(User user);

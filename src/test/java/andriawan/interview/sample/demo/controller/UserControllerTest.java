@@ -3,6 +3,7 @@ package andriawan.interview.sample.demo.controller;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 
+import andriawan.interview.sample.demo.component.JwtAuthFilter;
 import andriawan.interview.sample.demo.repository.UserRepository;
 import andriawan.interview.sample.demo.service.UserService;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ public class UserControllerTest {
   @MockBean UserRepository userRepository;
   @Autowired private MockMvc mockMvc;
   @MockBean UserService userService;
+  @MockBean JwtAuthFilter jwtAuthFilter;
 
   @SuppressWarnings("null")
   @Test

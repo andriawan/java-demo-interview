@@ -10,5 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, Long>, QuerydslPredicateExecutor<User> {
   List<User> findByName(String lastName);
 
+  User findByEmail(String email);
+
   User findById(long id);
 }

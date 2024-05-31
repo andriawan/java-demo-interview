@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 public class UserStoreRequest {
   private String name;
+  private String email;
+  private String password;
   private Boolean isActive;
   private String address;
   private Integer age;
