@@ -6,9 +6,8 @@ import andriawan.interview.sample.demo.dto.UserDto;
 import andriawan.interview.sample.demo.dto.UserStoreRequest;
 import andriawan.interview.sample.demo.service.JWTService;
 import andriawan.interview.sample.demo.service.UserService;
-import jakarta.validation.Valid;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,8 +48,8 @@ public class AuthController {
   }
 
   @PostMapping("/register")
-  public @ResponseBody ResponseEntity<UserDto> register(@Valid @RequestBody UserStoreRequest request)
-      throws JsonProcessingException {
+  public @ResponseBody ResponseEntity<UserDto> register(
+      @Valid @RequestBody UserStoreRequest request) throws JsonProcessingException {
     UserDto data = this.userService.saveData(request);
     return ResponseEntity.status(HttpStatus.CREATED).body(data);
   }

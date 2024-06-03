@@ -3,8 +3,6 @@ package andriawan.interview.sample.demo.config;
 import andriawan.interview.sample.demo.component.JwtAuthFilter;
 import andriawan.interview.sample.demo.component.UserDetailsServiceImpl;
 import jakarta.servlet.DispatcherType;
-
-import org.apache.tomcat.util.net.DispatchType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,13 +42,16 @@ public class Security {
               authorizationManagerRequestMatcherRegistry
                   .requestMatchers("/db")
                   .permitAll()
-                  .requestMatchers("/v1/auth/login").permitAll()
-                  .requestMatchers("/v1/auth/register").permitAll()
+                  .requestMatchers("/v1/auth/login")
+                  .permitAll()
+                  .requestMatchers("/v1/auth/register")
+                  .permitAll()
                   .requestMatchers(HttpMethod.POST, "/user")
                   .permitAll()
                   .requestMatchers(HttpMethod.GET, "/user")
                   .permitAll()
-                  .dispatcherTypeMatchers(DispatcherType.ERROR).anonymous()
+                  .dispatcherTypeMatchers(DispatcherType.ERROR)
+                  .anonymous()
                   .requestMatchers("/v1/**")
                   .authenticated();
             })

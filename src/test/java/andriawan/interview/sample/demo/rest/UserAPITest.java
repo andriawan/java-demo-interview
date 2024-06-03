@@ -62,14 +62,20 @@ class UserAPITest {
   void userShouldLoginSuccessfully() throws Exception {
     UserStoreRequest userRequest = createUser();
     this.restTemplate.postForObject(this.url.concat("/user"), userRequest, String.class);
-    ResponseEntity<String> loginResponse = this.restTemplate.postForEntity(this.url.concat("/v1/auth/login"), new LoginRequest(userRequest.getEmail(), userRequest.getPassword()), String.class);
+    ResponseEntity<String> loginResponse =
+        this.restTemplate.postForEntity(
+            this.url.concat("/v1/auth/login"),
+            new LoginRequest(userRequest.getEmail(), userRequest.getPassword()),
+            String.class);
     assertThat(loginResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
   }
 
   @Test
   void userShouldRegisterSuccessfully() throws Exception {
     UserStoreRequest userRequest = createUser();
-    ResponseEntity<String> loginResponse = this.restTemplate.postForEntity(this.url.concat("/v1/auth/register"), userRequest, String.class);
+    ResponseEntity<String> loginResponse =
+        this.restTemplate.postForEntity(
+            this.url.concat("/v1/auth/register"), userRequest, String.class);
     assertThat(loginResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
   }
 
@@ -77,7 +83,9 @@ class UserAPITest {
   void userShouldFailRegisterWithMissingField() throws Exception {
     UserStoreRequest userRequest = createUser();
     userRequest.setName(null);
-    ResponseEntity<String> loginResponse = this.restTemplate.postForEntity(this.url.concat("/v1/auth/register"), userRequest, String.class);
+    ResponseEntity<String> loginResponse =
+        this.restTemplate.postForEntity(
+            this.url.concat("/v1/auth/register"), userRequest, String.class);
     assertThat(loginResponse.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
   }
 }
