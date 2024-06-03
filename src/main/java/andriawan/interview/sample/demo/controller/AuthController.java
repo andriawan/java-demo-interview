@@ -2,9 +2,15 @@ package andriawan.interview.sample.demo.controller;
 
 import andriawan.interview.sample.demo.dto.LoginRequest;
 import andriawan.interview.sample.demo.dto.Token;
+import andriawan.interview.sample.demo.dto.UserDto;
+import andriawan.interview.sample.demo.dto.UserStoreRequest;
 import andriawan.interview.sample.demo.service.JWTService;
+import andriawan.interview.sample.demo.service.UserService;
+import jakarta.validation.Valid;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,9 +28,11 @@ public class AuthController {
 
   @Autowired private JWTService jwtService;
 
+  @Autowired private UserService userService;
+
   @Autowired private AuthenticationManager authorizationManager;
 
-  @PostMapping()
+  @PostMapping("/login")
   public @ResponseBody ResponseEntity<Token> login(@RequestBody LoginRequest loginRequest)
       throws JsonProcessingException {
     Token token;
@@ -38,5 +46,12 @@ public class AuthController {
       throw new UsernameNotFoundException("invalid user request..!!");
     }
     return ResponseEntity.ok(token);
+  }
+
+  @PostMapping("/register")
+  public @ResponseBody ResponseEntity<UserDto> register(@Valid @RequestBody UserStoreRequest request)
+      throws JsonProcessingException {
+    UserDto data = this.userService.saveData(request);
+    return ResponseEntity.status(HttpStatus.CREATED).body(data);
   }
 }
