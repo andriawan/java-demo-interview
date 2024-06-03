@@ -2,8 +2,19 @@ logging:
     level:
         web: DEBUG
 spring:
+    h2:
+        console:
+            enabled: true
+            path: /db
+            settings.trace: false
+            settings.web-allow-others: false
     application:
         name: ${APP_NAME:Interview Demo Sample}
+    datasource:
+        url: jdbc:h2:file:./data/demo
+        username: sa
+        password: password
+        driverClassName: org.h2.Driver
     devtools:    
         restart:      
             enabled: 'true'      
@@ -11,8 +22,13 @@ spring:
             quiet-period: '1s'      
             additional-paths:      
                 - src/main/java/
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        defer-datasource-initialization: true
+        hibernate:
+            ddl-auto: update
 server:
-    port: ${APP_PORT:8080}
+    port: ${APP_PORT:8000}
 jwt:
     secret: ${SECRET_KET:vDgAkz3OtUf8yjVfcl/mHfZGZHpXK3W8L5PmHvUTABYfFYVzSz5+qgWPMp2QH5I4x3UBPxytZ3gTP8RaFPvURqdh4rbclivrW7u52ZHKLvvOTNOAdx3ApSeb}
 springdoc:
